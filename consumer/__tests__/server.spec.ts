@@ -9,7 +9,7 @@ const provider = new PactV3({
 });
 
 const helloResponse = {"word": "Hello"}
-const EXPECTED_BODY = MatchersV3.eachLike(helloResponse)
+const EXPECTED_BODY = MatchersV3.like(helloResponse)
 
 describe('GET /greet', () => {
   test('returns an HTTP 200 and hello', () => {
@@ -29,7 +29,7 @@ describe('GET /greet', () => {
     return provider.executeTest( async (mockServer) => {
       const response = await getData(mockServer.url)
 
-      expect(response[0]).toEqual(helloResponse)
+      expect(response).toEqual(helloResponse)
     })
   })
 })
